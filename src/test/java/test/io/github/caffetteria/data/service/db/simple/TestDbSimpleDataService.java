@@ -3,6 +3,7 @@ package test.io.github.caffetteria.data.service.db.simple;
 import io.github.caffetteria.data.service.db.simple.DbSimpleDataService;
 import io.github.caffetteria.data.service.db.simple.DbSimpleDataServiceFacade;
 import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.db.connect.ConnectionFactory;
 import org.fugerit.java.core.db.connect.ConnectionFactoryImpl;
 import org.fugerit.java.core.function.SafeFunction;
@@ -39,6 +40,7 @@ class TestDbSimpleDataService {
                 Assertions.assertEquals( testData, readData );
             }
             Assertions.assertNotNull( facade );
+            Assertions.assertThrows( ConfigException.class, () -> ((DbSimpleDataService)dataService).setup( facade ) );
         });
     }
 
